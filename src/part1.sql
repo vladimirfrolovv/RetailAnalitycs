@@ -80,18 +80,18 @@ $$ LANGUAGE plpgsql;
 
 CALL IMPORT_FROM_TSV();
 
-CREATE OR REPLACE PROCEDURE EXPORT_TO_TSV() AS
-$$
-DECLARE
-    export_path VARCHAR   = '/home/fixierad/GitHub/RetailAnalitycs/datasets/backup/';
-    export_name VARCHAR[] = ARRAY ['personal_information', 'cards', 'transactions','sku_group','product_grid', 'checks', 'stores','date_of_analysis_formation'];
-BEGIN
-    FOR i IN 1..ARRAY_LENGTH(export_name, 1)
-        LOOP
-            EXECUTE FORMAT('COPY %s TO ''%s%s.tsv'' WITH DELIMITER E''\t'' CSV', export_name[i], export_path,
-                           export_name[i]);
-        END LOOP;
-END;
-$$ LANGUAGE plpgsql;
-
-CALL EXPORT_TO_TSV();
+-- CREATE OR REPLACE PROCEDURE EXPORT_TO_TSV() AS
+-- $$
+-- DECLARE
+--     export_path VARCHAR   = '/home/fixierad/GitHub/RetailAnalitycs/datasets/backup/';
+--     export_name VARCHAR[] = ARRAY ['personal_information', 'cards', 'transactions','sku_group','product_grid', 'checks', 'stores','date_of_analysis_formation'];
+-- BEGIN
+--     FOR i IN 1..ARRAY_LENGTH(export_name, 1)
+--         LOOP
+--             EXECUTE FORMAT('COPY %s TO ''%s%s.tsv'' WITH DELIMITER E''\t'' CSV', export_name[i], export_path,
+--                            export_name[i]);
+--         END LOOP;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--
+-- CALL EXPORT_TO_TSV();
